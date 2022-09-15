@@ -1,6 +1,6 @@
-import { Theme } from "./type";
+import { ThemeType } from "./type";
 
-export const Dark: Theme = {
+export const Dark: ThemeType = {
     background: "#111111",
     surface: "#1C1C1C",
     surface2: "#202020",

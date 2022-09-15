@@ -1,4 +1,4 @@
-export type Theme = {
+export type ThemeType = {
     background: string;
     surface: string;
     surface2: string;
