@@ -23,6 +23,7 @@ export default function Background({ children }: any): JSX.Element {
         <View
             style={{
                 flex: 1,
+                padding: 16,
                 backgroundColor: theme.background,
             }}
         >
