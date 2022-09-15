@@ -8,7 +8,6 @@ import {
 export default function useEditLap({ onSuccess, onError }) {
     return useMutation(
         async (lap: LapProps) => {
-            console.log(lap);
             const data = await ResultsController.editLap(lap);
 
             return data;

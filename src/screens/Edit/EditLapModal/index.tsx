@@ -20,11 +20,7 @@ export default function EditLapModal({
 }) {
     const { theme } = useTheme();
 
-    console.log(selectedLap);
-
     const [lap, setLap] = useState<LapProps>(selectedLap || {});
-
-    console.log(lap.lap);
 
     const editMutation = useEditLap({
         onSuccess: () => {
