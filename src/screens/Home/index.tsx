@@ -1,18 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { FlatList, View } from "react-native";
 import Background from "../../components/Background";
+import ResultRow, { PilotResultProps } from "../../components/ResultRow";
 import Text from "../../components/Text";
 import { LapProps } from "../../controllers/ResultsController";
 import useResults from "../../hooks/Results/useResults";
-import DateUtil from "../../utils/DateUtil";
-
-interface PilotResultProps {
-    id: string;
-    name: string;
-    totalTime?: number;
-    totalLaps?: number;
-}
-
+import DateUtil from "../../utils/DateUtils";
 export default function Home() {
     const { data: results, isLoading } = useResults() || {};
 
@@ -59,14 +52,16 @@ export default function Home() {
 
     return (
         <Background>
-            {result
-                .sort(
+            <FlatList
+                data={result.sort(
                     (a: PilotResultProps, b: PilotResultProps) =>
                         (a.totalTime || 0) - (b.totalTime || 0)
-                )
-                .map((item, index) => {
-                    return <Text key={index}>{item.name}</Text>;
-                })}
+                )}
+                renderItem={({ item, index }) => (
+                    <ResultRow position={index + 1} {...item} />
+                )}
+                keyExtractor={(item) => item.id}
+            />
         </Background>
     );
 }
