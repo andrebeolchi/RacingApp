@@ -1,7 +1,8 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, TouchableOpacity, View } from "react-native";
 import Background from "../../components/Background";
+import LapRow from "../../components/LapRow";
 import Text from "../../components/Text";
 import useResults from "../../hooks/Results/useResults";
 
@@ -10,11 +11,7 @@ export default function Edit() {
         params: { id },
     } = useRoute() || {};
 
-    console.log(id);
-
     const { data, isLoading } = useResults(id);
-
-    console.log("data:", data);
 
     if (!id) {
         return (
@@ -48,14 +45,27 @@ export default function Edit() {
         );
     }
 
-    console.log(data);
-
     return (
         <Background>
             <FlatList
                 data={data || []}
-                renderItem={({ item }) => <Text>{item.pilot}</Text>}
-                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => {
+                            console.log("Edit lap");
+                        }}
+                    >
+                        <LapRow
+                            maxLaps={4}
+                            name={item.pilot.split(" ").reverse()[0]}
+                            id={item.pilot.split(" ")[0]}
+                            lap={item.lap}
+                            lapTime={item.lapTime}
+                        />
+                    </TouchableOpacity>
+                )}
+                keyExtractor={(item) => item.date}
             />
         </Background>
     );

@@ -45,7 +45,7 @@ export default function MainNavigator() {
                     name={"Edit"}
                     component={Edit}
                     options={{
-                        title: "Editar Resultados",
+                        title: "Editar Voltas",
                     }}
                 />
             </Stack.Navigator>
