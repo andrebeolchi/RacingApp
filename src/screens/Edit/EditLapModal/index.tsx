@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/Ionicons";
 import Button from "../../../components/Button";
 import Text from "../../../components/Text";
 import TextInput from "../../../components/TextInput";
 import { LapProps } from "../../../controllers/ResultsController";
+import useEditLap from "../../../hooks/Results/useEditLap";
 import { useTheme } from "../../../hooks/useTheme";
 
 export default function EditLapModal({
@@ -24,6 +25,16 @@ export default function EditLapModal({
     const [lap, setLap] = useState<LapProps>(selectedLap || {});
 
     console.log(lap.lap);
+
+    const editMutation = useEditLap({
+        onSuccess: () => {
+            onClose();
+        },
+        onError: () => {
+            onClose();
+            Alert.alert("Erro", "Ocorreu um erro ao editar essa volta.");
+        },
+    });
 
     return (
         <Modal
@@ -126,7 +137,11 @@ export default function EditLapModal({
                             paddingBottom: 16,
                         }}
                     >
-                        <Button label="Salvar" />
+                        <Button
+                            label="Salvar"
+                            isLoading={editMutation.isLoading}
+                            onPress={() => editMutation.mutate(lap)}
+                        />
                     </View>
                 </View>
             </View>
