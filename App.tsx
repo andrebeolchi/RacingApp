@@ -1,10 +1,11 @@
-import { StatusBar, Text } from "react-native";
+import { StatusBar } from "react-native";
 import ThemeProvider from "./src/context/theme";
+import MainNavigator from "./src/navigators";
 
 export default function App() {
     return (
         <ThemeProvider>
-            <Text>Open up App.tsx to start working on your app!</Text>
+            <MainNavigator />
             <StatusBar />
         </ThemeProvider>
     );
