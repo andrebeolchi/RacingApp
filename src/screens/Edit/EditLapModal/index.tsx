@@ -28,11 +28,12 @@ export default function EditLapModal({
 
     const editMutation = useEditLap({
         onSuccess: () => {
+            Alert.alert("Sucesso!", "Volta editada com sucesso!");
             onClose();
         },
         onError: () => {
-            onClose();
             Alert.alert("Erro", "Ocorreu um erro ao editar essa volta.");
+            onClose();
         },
     });
 
