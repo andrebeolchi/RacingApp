@@ -1,7 +1,8 @@
 import React from "react";
 import { Theme } from "../../theme";
 import { ThemeType } from "../../theme/type";
-import { ThemeContextProps, ThemeProviderProps } from "./types";
+import { ProviderProps } from "../types";
+import { ThemeContextProps } from "./types";
 
 export const ThemeContext = React.createContext<ThemeContextProps>({
     theme: Theme["Dark"],
@@ -10,7 +11,7 @@ export const ThemeContext = React.createContext<ThemeContextProps>({
 
 /**
  * Use to access the current theme or toggle the theme.
- * @param {ThemeProviderProps} props
+ * @param {ProviderProps} props
  * @returns {JSX.Element} ThemeProvider
  * @example
  * import { ThemeProvider } from "./context/theme";
@@ -24,7 +25,7 @@ export const ThemeContext = React.createContext<ThemeContextProps>({
  */
 export default function ThemeProvider({
     children,
-}: ThemeProviderProps): JSX.Element {
+}: ProviderProps): JSX.Element {
     const [theme, setTheme] = React.useState<ThemeType>(Theme["Dark"]);
 
     const toggleTheme = () => {
