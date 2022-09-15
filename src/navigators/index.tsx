@@ -2,12 +2,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import type { NativeStackNavigationOptions } from "@react-navigation/native-stack";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import Button from "../components/Button";
 import { useTheme } from "../hooks/useTheme";
 import Edit from "../screens/Edit";
 import Home from "../screens/Home";
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+    Home: undefined;
+    Edit: { pilot: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function MainNavigator() {
     const { theme } = useTheme();
@@ -33,21 +37,15 @@ export default function MainNavigator() {
                 <Stack.Screen
                     name={"Home"}
                     component={Home}
-                    options={({ navigation }) => ({
+                    options={{
                         title: "Resultados",
-                        headerRight: () => (
-                            <Button
-                                label="Editar"
-                                onPress={() => navigation.navigate("Edit")}
-                            />
-                        ),
-                    })}
+                    }}
                 />
                 <Stack.Screen
                     name={"Edit"}
                     component={Edit}
                     options={{
-                        title: "Editar Resultados",
+                        title: "Editar Voltas",
                     }}
                 />
             </Stack.Navigator>

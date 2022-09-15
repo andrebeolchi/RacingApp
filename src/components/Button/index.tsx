@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { ActivityIndicator, TouchableOpacity } from "react-native";
 import { useTheme } from "../../hooks/useTheme";
 import Text from "../Text";
 import { ButtonProps } from "./types";
@@ -28,9 +28,15 @@ export default function Button(props: ButtonProps) {
                 paddingVertical: 8,
                 paddingHorizontal: 32,
                 borderRadius: 5,
+                alignItems: "center",
+                justifyContent: "center",
             }}
         >
-            <Text bold>{props.label}</Text>
+            {props.isLoading ? (
+                <ActivityIndicator color={theme.text.primary} size="small" />
+            ) : (
+                <Text bold>{props.label}</Text>
+            )}
         </TouchableOpacity>
     );
 }
