@@ -7,6 +7,7 @@ export type ThemeType = {
         primary: string;
         primary80: string;
         secondary: string;
+        link: string;
     };
-    accent: string;
+    primary: string;
 };

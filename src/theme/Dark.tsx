@@ -9,6 +9,7 @@ export const Dark: ThemeType = {
         primary: "#EAEAEA",
         primary80: "#EAEAEA80",
         secondary: "#111111",
+        link: "#2C1DFE",
     },
-    accent: "#2C1DFE",
+    primary: "#2C1DFE",
 };
