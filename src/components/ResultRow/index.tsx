@@ -12,6 +12,18 @@ export interface PilotResultProps {
     totalLaps?: number;
 }
 
+/**
+ * Component to render the row of the result.
+ * @param {object} props - Props
+ * @param {string} props.id - Id of the pilot
+ * @param {string} props.name - Name of the pilot
+ * @param {number} props.totalTime - Total time of the pilot
+ * @param {number} props.totalLaps - Total laps of the pilot
+ * @param {number} props.position - Position of the pilot
+ * @param {number} props.maxLaps - Max laps of the race
+ * @returns {JSX.Element} ResultRow
+ *
+ */
 export default function ResultRow({
     position,
     name,
@@ -67,7 +79,9 @@ export default function ResultRow({
                     subtitle
                     secondary={position <= 3}
                     black
-                >{`${position}°`}</Text>
+                >
+                    {`${position}°`}
+                    </Text>
             </View>
             <View
                 style={{
