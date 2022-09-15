@@ -28,6 +28,8 @@ export default function Button(props: ButtonProps) {
                 paddingVertical: 8,
                 paddingHorizontal: 32,
                 borderRadius: 5,
+                alignItems: "center",
+                justifyContent: "center",
             }}
         >
             <Text bold>{props.label}</Text>

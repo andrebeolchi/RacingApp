@@ -1,10 +1,12 @@
 import { useRoute } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import { FlatList, TouchableOpacity, View } from "react-native";
 import Background from "../../components/Background";
 import LapRow from "../../components/LapRow";
 import Text from "../../components/Text";
+import { LapProps } from "../../controllers/ResultsController";
 import useResults from "../../hooks/Results/useResults";
+import EditLapModal from "./EditLapModal";
 
 export default function Edit() {
     const {
@@ -12,6 +14,9 @@ export default function Edit() {
     } = useRoute() || {};
 
     const { data, isLoading } = useResults(id);
+
+    const [editLapModal, setEditLapModal] = useState<boolean>(false);
+    const [selectedLap, setSelectedLap] = useState<LapProps>();
 
     if (!id) {
         return (
@@ -53,7 +58,8 @@ export default function Edit() {
                     <TouchableOpacity
                         activeOpacity={0.8}
                         onPress={() => {
-                            console.log("Edit lap");
+                            setEditLapModal(true);
+                            setSelectedLap(item);
                         }}
                     >
                         <LapRow
@@ -67,6 +73,16 @@ export default function Edit() {
                 )}
                 keyExtractor={(item) => item.date}
             />
+            {selectedLap && (
+                <EditLapModal
+                    key={selectedLap?.date}
+                    isOpen={editLapModal}
+                    selectedLap={selectedLap}
+                    onClose={() => {
+                        setEditLapModal(false);
+                    }}
+                />
+            )}
         </Background>
     );
 }

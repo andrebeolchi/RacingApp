@@ -3,7 +3,7 @@ import axios from "axios";
 export interface LapProps {
     date: string;
     pilot: string;
-    lap: number;
+    lap: number | string;
     lapTime: string;
     avgSpeed: string;
 }

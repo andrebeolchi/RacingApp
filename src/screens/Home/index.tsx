@@ -22,7 +22,7 @@ export default function Home() {
                         alignItems: "center",
                     }}
                 >
-                    <Text>Loading...</Text>
+                    <Text>Carregando...</Text>
                 </View>
             </Background>
         );

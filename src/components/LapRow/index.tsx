@@ -30,7 +30,7 @@ export default function LapRow({
     name,
     maxLaps = 4,
 }: {
-    lap: number;
+    lap: number | string;
     lapTime: string;
     maxLaps?: number;
     id: string;
